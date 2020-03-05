@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Template, TemplateService} from '../common/template.service';
 import {Observable, Subject} from 'rxjs';
-import {indicate} from '../common/operators.service';
+import {indicate} from '../common/operators';
 
 @Component({
   selector: 'app-list-template',

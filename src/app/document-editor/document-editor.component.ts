@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {indicate} from '../common/operators.service';
+import {indicate} from '../common/operators';
 import {Observable, Subject} from 'rxjs';
 import {Document, DocumentService} from '../common/document.service';
 
