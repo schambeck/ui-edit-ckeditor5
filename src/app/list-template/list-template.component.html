@@ -4,6 +4,10 @@
       <h2>Create Proposal</h2>
     </div>
     <div class="card-body">
+      <button class="btn btn-primary" type="button" (click)="getTemplates()" [disabled]="loading | async">
+        <span *ngIf="loading | async" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Refresh
+      </button>
       <p>Legislative Documents</p>
       <table class="table table-striped table-hover">
         <thead>
@@ -15,7 +19,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let template of templates; index as i" [routerLink]="['/document-editor', template.code]">
+        <tr *ngFor="let template of templates$ | async; index as i" [routerLink]="['/document-editor', template.code]">
           <th scope="row">{{ i + 1 }}</th>
           <td>{{ template.code }}</td>
           <td>{{ template.type }}</td>

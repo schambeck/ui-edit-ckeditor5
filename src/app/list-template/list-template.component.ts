@@ -1,33 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-
-interface Template {
-  code: string;
-  type: string,
-  name: string;
-}
-
-const TEMPLATES: Template[] = [
-  {
-    code: 'SJ-023',
-    type: 'Proposal for a regulation',
-    name: 'Proposal for a Regulation of the European Parliament and of the Council',
-  },
-  {
-    code: 'SJ-024',
-    type: 'Proposal for a directive',
-    name: 'Proposal for a Directive of the European Parliament and of the Council',
-  },
-  {
-    code: 'SJ-025',
-    type: 'Proposal for a decision',
-    name: 'Proposal for a Decision of the European Parliament and of the Council',
-  },
-  {
-    code: 'SJ-026',
-    type: 'Proposal for a decision',
-    name: 'Proposal for a Decision of the European Parliament and of the Council (without addressees)',
-  }
-];
+import {Component, OnInit} from '@angular/core';
+import {Template, TemplateService} from '../common/template.service';
+import {Observable, Subject} from 'rxjs';
+import {indicate} from '../common/operators.service';
 
 @Component({
   selector: 'app-list-template',
@@ -36,11 +10,19 @@ const TEMPLATES: Template[] = [
 })
 export class ListTemplateComponent implements OnInit {
 
-  templates = TEMPLATES;
+  loading = new Subject<boolean>();
+  templates$: Observable<Template[]>;
 
-  constructor() { }
+  constructor(private templateService: TemplateService) {
+  }
 
   ngOnInit(): void {
+    setTimeout(() => this.getTemplates());
+  }
+
+  getTemplates(): void {
+    this.templates$ = this.templateService.getTemplates()
+      .pipe(indicate(this.loading));
   }
 
 }

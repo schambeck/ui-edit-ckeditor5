@@ -1,1 +1,7 @@
-<p>Template {{ code }}</p>
+<div *ngIf="creating | async">
+  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  Creating new document...
+</div>
+<div *ngIf="document$ | async; let document2">
+  <p>Template {{ document2.code }}</p>
+</div>
