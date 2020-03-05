@@ -2,11 +2,11 @@ import {Observable, Subject} from 'rxjs';
 import {tap} from 'rxjs/operators';
 
 export const indicate = <T>(indicator: Subject<boolean>) => {
-  console.log('indicator')
+  // console.log('indicator')
   indicator.next(true);
   return (source: Observable<T>): Observable<T> => source.pipe(
     tap(() => {
-        console.log('next')
+        // console.log('next')
         indicator.next(false);
       })
   );

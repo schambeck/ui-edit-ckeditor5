@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {indicate} from '../common/operators';
 import {Observable, Subject} from 'rxjs';
 import {Document, DocumentService} from '../common/document.service';
+import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 
 @Component({
   selector: 'app-document-editor',
@@ -14,6 +15,18 @@ export class DocumentEditorComponent implements OnInit {
   code: string;
   document$: Observable<Document>;
   creating = new Subject<boolean>();
+
+  public Editor = DecoupledEditor;
+  public model = {
+    editorData: '<p>Hello, world!!!!</p>'
+  };
+
+  public onReady( editor ) {
+    editor.ui.getEditableElement().parentElement.insertBefore(
+      editor.ui.view.toolbar.element,
+      editor.ui.getEditableElement()
+    );
+  }
 
   constructor(
     private route: ActivatedRoute,
@@ -31,4 +44,7 @@ export class DocumentEditorComponent implements OnInit {
       .pipe(indicate(this.creating));
   }
 
+  showModel() {
+    console.log(this.model.editorData);
+  }
 }

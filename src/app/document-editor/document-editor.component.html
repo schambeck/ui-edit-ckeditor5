@@ -4,4 +4,6 @@
 </div>
 <div *ngIf="document$ | async; let document2">
   <p>Template {{ document2.code }}</p>
+  <button class="btn btn-primary" type="button" (click)="showModel()">Model</button>
+  <ckeditor [(ngModel)]="model.editorData" [editor]="Editor" (ready)="onReady($event)"></ckeditor>
 </div>
