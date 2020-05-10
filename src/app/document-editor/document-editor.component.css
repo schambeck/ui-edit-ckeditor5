@@ -1,3 +1,208 @@
 :host ::ng-deep .ck-editor__editable_inline {
   min-height: 500px;
 }
+
+:host {
+  --ck-sample-base-spacing: 2em;
+  --ck-sample-color-white: #fff;
+  --ck-sample-color-green: #279863;
+  --ck-sample-color-blue: #1a9aef;
+  --ck-sample-container-width: 1285px;
+  --ck-sample-sidebar-width: 350px;
+  --ck-sample-editor-min-height: 400px;
+}
+
+/* --------- EDITOR STYLES  ---------------------------------------------------------------------------------------- */
+
+.editor__editable,
+  /* Classic build. */
+main .ck-editor[role='application'] .ck.ck-content,
+  /* Decoupled document build. */
+.ck.editor__editable[role='textbox'],
+.ck.ck-editor__editable[role='textbox'],
+  /* Inline & Balloon build. */
+.ck.editor[role='textbox'] {
+  width: 100%;
+  background: #fff;
+  font-size: 1em;
+  line-height: 1.6em;
+  min-height: var(--ck-sample-editor-min-height);
+  padding: 1.5em 2em;
+}
+
+.ck.ck-editor__editable {
+  background: #fff;
+  border: 1px solid hsl(0, 0%, 70%);
+  width: 100%;
+}
+
+.ck.ck-editor {
+  /* To enable toolbar wrapping. */
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Because of sidebar `position: relative`, Edge is overriding the outline of a focused editor. */
+.ck.ck-editor__editable {
+  position: relative;
+  z-index: 10;
+}
+
+/* --------- DECOUPLED (DOCUMENT) BUILD. ---------------------------------------------*/
+panel[data-editor='DecoupledDocumentEditor'] .document-editor__toolbar {
+  width: 100%;
+}
+
+panel[ data-editor='DecoupledDocumentEditor'] .row-editor .editor {
+  width: 18.5cm;
+  height: 100%;
+  min-height: 26.25cm;
+  padding: 1.75cm 1.5cm;
+  margin: 2.5rem;
+  border: 1px hsl( 0, 0%, 82.7% ) solid;
+  background-color: var(--ck-sample-color-white);
+  box-shadow: 0 0 5px hsla( 0, 0%, 0%, .1 );
+}
+
+panel[ data-editor='DecoupledDocumentEditor'] .row-editor {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  overflow-y: auto;
+  background-color: #f2f2f2;
+  border: 1px solid hsl(0, 0%, 77%);
+}
+
+panel[data-editor='DecoupledDocumentEditor'] .sidebar {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+/* --------- SAMPLE GENERIC STYLES (not related to CKEditor) ------------------------------------------------------- */
+panel, html {
+  padding: 0;
+  margin: 0;
+
+  font-family: sans-serif, Arial, Verdana, "Trebuchet MS", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+panel {
+  height: 100%;
+  color: #2D3A4A;
+}
+
+panel * {
+  box-sizing: border-box;
+}
+
+a {
+  color: #38A5EE;
+}
+
+header .centered {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 8em;
+}
+
+header h1 a {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  color: #2D3A4A;
+  text-decoration: none;
+}
+
+header h1 img {
+  display: block;
+  height: 64px;
+}
+
+header nav ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+header nav ul li {
+  display: inline-block;
+}
+
+header nav ul li + li {
+  margin-left: 1em;
+}
+
+header nav ul li a {
+  font-weight: bold;
+  text-decoration: none;
+  color: #2D3A4A;
+}
+
+header nav ul li a:hover {
+  text-decoration: underline;
+}
+
+main .message {
+  padding: 0 0 var(--ck-sample-base-spacing);
+  background: var(--ck-sample-color-green);
+  color: var(--ck-sample-color-white);
+}
+
+main .message::after {
+  content: "";
+  z-index: -1;
+  display: block;
+  height: 10em;
+  width: 100%;
+  background: var(--ck-sample-color-green);
+  position: absolute;
+  left: 0;
+}
+
+main .message h2 {
+  position: relative;
+  padding-top: 1em;
+  font-size: 2em;
+}
+
+.centered {
+  /* Hide overlapping comments. */
+  overflow: hidden;
+  max-width: var(--ck-sample-container-width);
+  margin: 0 auto;
+  padding: 0 var(--ck-sample-base-spacing);
+}
+
+footer {
+  margin: calc(2*var(--ck-sample-base-spacing)) var(--ck-sample-base-spacing);
+  font-size: .8em;
+  text-align: center;
+  color: rgba(0,0,0,.4);
+}
+
+:host ::ng-deep .ck-editor__editable_inline .article {
+  padding: 10px;
+  margin: 1em 0;
+
+  background: rgba(0, 0, 0, 0.1);
+  border: solid 1px hsl(0, 0%, 77%);
+  border-radius: 2px;
+}
+
+:host ::ng-deep .ck-editor__editable_inline .article-title,
+:host ::ng-deep .ck-editor__editable_inline .article-description {
+  padding: 10px;
+  margin: 0;
+
+  background: #FFF;
+  border: solid 1px hsl(0, 0%, 77%);
+}
+
+:host ::ng-deep .ck-editor__editable_inline .article-title {
+  margin-bottom: 10px;
+}

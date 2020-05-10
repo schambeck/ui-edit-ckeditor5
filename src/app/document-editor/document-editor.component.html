@@ -2,8 +2,20 @@
   <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
   Creating new document...
 </div>
-<div *ngIf="document$ | async; let document2">
-  <p>Template {{ document2.code }}</p>
-  <button class="btn btn-primary" type="button" (click)="showModel()">Model</button>
-  <ckeditor [(ngModel)]="model.editorData" [editor]="Editor" (ready)="onReady($event)"></ckeditor>
+
+<div *ngIf="document$ | async; let document">
+  <p>Template {{ document.code }}</p>
+  <p><button class="btn btn-primary" type="button" (click)="showModel()">Model</button></p>
+  <panel data-editor="DecoupledDocumentEditor" data-collaboration="false">
+    <main>
+      <div class="centered">
+        <div class="row">
+          <div class="document-editor__toolbar"></div>
+        </div>
+        <div class="row row-editor">
+          <ckeditor [(ngModel)]="model.editorData" [editor]="Editor" [config]="editorConfig" (ready)="onReady($event)" class="editor"></ckeditor>
+        </div>
+      </div>
+    </main>
+  </panel>
 </div>
